@@ -29,16 +29,16 @@ OPTION(${PROJECT_NAME}_ENABLE_WXML "Enable/disable general Fortran XML output li
 OPTION(${PROJECT_NAME}_ENABLE_WCML "Enable/disable Chemical Markup Language output library" ON)
 OPTION(${PROJECT_NAME}_ENABLE_WKML "Enable/disable Keyhole Markup Language output library" ON)
 OPTION(${PROJECT_NAME}_ENABLE_DOM "Enable/disable Document Object Model input library" ON)
-OPTION(${PROJECT_NAME}_ENABLE_EXAMPLES "Build examples" ON)
+OPTION(${PROJECT_NAME}_ENABLE_EXAMPLES "Build examples" OFF)
 
 #======================#
 # set another compiler #
 #======================#
-# to set another compiler than the default, 
+# to set another compiler than the default,
 # do the usual from within the build directory:
-# $ FC=g95 
+# $ FC=g95
 # $ rm -rf * && cmake ../
-# $ make 
+# $ make
 
 #=====================#
 # verbose make output #
@@ -178,5 +178,3 @@ ELSE()
     SET_PROPERTY(GLOBAL PROPERTY INCLUDE_DIRECTORIES ${NEW_INCLUDE_DIRS})
 
 ENDIF()
-
-
