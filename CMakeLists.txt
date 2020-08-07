@@ -26,8 +26,8 @@ INCLUDE_DIRECTORIES(${CMAKE_Fortran_MODULE_DIRECTORY})
 #======================#
 
 OPTION(${PROJECT_NAME}_ENABLE_WXML "Enable/disable general Fortran XML output library" ON)
-OPTION(${PROJECT_NAME}_ENABLE_WCML "Enable/disable Chemical Markup Language output library" ON)
-OPTION(${PROJECT_NAME}_ENABLE_WKML "Enable/disable Keyhole Markup Language output library" ON)
+OPTION(${PROJECT_NAME}_ENABLE_WCML "Enable/disable Chemical Markup Language output library" OFF)
+OPTION(${PROJECT_NAME}_ENABLE_WKML "Enable/disable Keyhole Markup Language output library" OFF)
 OPTION(${PROJECT_NAME}_ENABLE_DOM "Enable/disable Document Object Model input library" ON)
 OPTION(${PROJECT_NAME}_ENABLE_EXAMPLES "Build examples" OFF)
 
