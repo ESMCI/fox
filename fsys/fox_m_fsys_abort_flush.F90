@@ -4,7 +4,7 @@ module fox_m_fsys_abort_flush
 
   public :: pxfflush
   public :: pxfabort
-  public :: pure_pxfabort
+!  public :: pure_pxfabort
   ! status values to write to stderr on termination
   integer, public, parameter :: STDERR_SUCCESS_STATUS = 0
   integer, public, parameter :: STDERR_FAILURE_STATUS = 1
@@ -43,25 +43,9 @@ module fox_m_fsys_abort_flush
 CONTAINS
 
   subroutine pxfflush(unit)
-#ifdef __NAG__
-    use f90_unix_io, only : flush
-#endif
-#ifdef __INTEL_COMPILER
-    use ifport, only : flush
-#endif
     integer, intent(in) :: unit
-    integer :: i
 
-#if defined(F2003)
     flush(unit)
-#elif defined(xlC)
-    call flush_(unit)
-#elif defined (FC_HAVE_FLUSH)
-    call flush(unit)
-#else
-    i= unit ! pacify compiler
-    continue
-#endif
 
   end subroutine pxfflush
 
@@ -124,11 +108,10 @@ CONTAINS
   ! (otherwise it would be optimized away as side-effect
   ! free
 
-  pure function pure_pxfabort() result (crash)
-    integer :: crash
-    integer, pointer :: i
-    nullify(i)
-    crash = i
-  end function pure_pxfabort
+!  pure function pure_pxfabort() result (crash)
+!    integer :: crash
+!    integer, pointer :: i
+!    crash = NULL(MOLD=i)
+!  end function pure_pxfabort
 
 end module fox_m_fsys_abort_flush

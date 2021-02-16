@@ -33,11 +33,8 @@ contains
     logical, intent(in), optional :: csv
     integer :: num
 #ifndef DUMMYLIB
-    logical :: bracketed
-    integer :: i, j, ij, k, s_i, err, ios, length
-    real :: r, c
+    integer :: ij, k, s_i, err
 
-    character(len=len(s)) :: s2
     logical :: csv_, eof
     integer :: m
 
@@ -63,7 +60,6 @@ contains
       elseif (s(s_i+k-1:s_i+k-1)=="""") then
         ! we have a quote-delimited string;
         s_i = s_i + k
-        s2 = ""
         quote: do 
           k = index(s(s_i:), """")
           if (k==0) then
@@ -71,7 +67,6 @@ contains
             exit loop
           endif
           k = s_i + k - 1
-          s2(m:) = s(s_i:k)
           m = m + (k-s_i+1)
           k = k + 2
           if (k>len(s)) then
@@ -85,7 +80,6 @@ contains
             exit loop
           endif
           m = m + 1
-          s2(m:m) = """"
         enddo quote
         k  = scan(s(s_i:), whitespace)
         if (k==0) then
@@ -142,13 +136,9 @@ contains
   pure function countlogical(s, datatype) result(num)
     character(len=*), intent(in) :: s
     logical, intent(in) :: datatype
-    logical :: dummy_data
     integer :: num
 #ifndef DUMMYLIB
-    logical :: bracketed
-    integer :: i, j, ij, k, s_i, err, ios, length
-    real :: r, c
-
+    integer :: ij, k, s_i, err, length
 
     s_i = 1
     err = 0
@@ -252,10 +242,7 @@ end function countinteger
     real(sp) :: dummy_data
     integer :: num
 #ifndef DUMMYLIB
-    logical :: bracketed
-    integer :: i, j, ij, k, s_i, err, ios, length
-    real :: r, c
-
+    integer :: ij, k, s_i, err, ios, length
 
     s_i = 1
     err = 0
@@ -306,10 +293,7 @@ end function countinteger
     real(dp) :: dummy_data
     integer :: num
 #ifndef DUMMYLIB
-    logical :: bracketed
-    integer :: i, j, ij, k, s_i, err, ios, length
-    real :: r, c
-
+    integer :: ij, k, s_i, err, ios, length
 
     s_i = 1
     err = 0
@@ -357,14 +341,11 @@ end function countinteger
   pure function countcomplexsp(s, datatype) result(num)
     character(len=*), intent(in) :: s
     complex(sp), intent(in) :: datatype
-    complex(sp) :: dummy_data
     integer :: num
 #ifndef DUMMYLIB
-    logical :: bracketed
     integer :: i, j, ij, k, s_i, err, ios, length
-    real :: r, c
-
-
+    logical :: bracketed
+    real :: c, r
     s_i = 1
     err = 0
     ij  = 0
@@ -459,11 +440,10 @@ end function countinteger
   pure function countcomplexdp(s, datatype) result(num)
     character(len=*), intent(in) :: s
     complex(dp), intent(in) :: datatype
-    complex(dp) :: dummy_data
     integer :: num
 #ifndef DUMMYLIB
     logical :: bracketed
-    integer :: i, j, ij, k, s_i, err, ios, length
+    integer :: ij, k, s_i, err, ios, length
     real :: r, c
 
 
